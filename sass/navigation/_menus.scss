@@ -3,6 +3,8 @@
 	display: block;
 	float: left;
 	width: 100%;
+	position: fixed;
+	background-color: $nav-offwhite;
 
 	ul {
 		display: none;
@@ -71,6 +73,10 @@
 }
 
 /* Small menu. */
+.menu-toggle {
+	height: 3rem;
+}
+
 .menu-toggle,
 .main-navigation.toggled ul {
 	display: block;

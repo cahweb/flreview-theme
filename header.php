@@ -16,6 +16,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 
+
+<!-- Pegasus favicon -->
+<link rel="icon" href="http://www.ucf.edu/img/pegasus-icon.png" type="image/png">
+
 <?php wp_head(); ?>
 </head>
 
@@ -25,12 +29,28 @@
 
 	<header id="masthead" class="site-header" role="banner">
 		<div class="site-branding">
-			<?php
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+
+			<!-- Navigation -->
+			<nav id="site-navigation" class="main-navigation" role="navigation">
+
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'MENU', 'flreview' ); ?></button>
+				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+
+			</nav><!-- #site-navigation -->
+
+
+			<?php // if homepage and frontpage
+			if ( is_front_page() ) : ?>
+				<!-- Hero image refers to full width image in header -->
+				<div class="flr-mobile-hero" style="background:url(<? the_post_thumbnail_url('medium'); ?>);">
+					
+				</div>
+				<div class="flr-desktop-hero" style="background:url(<? the_post_thumbnail_url('full'); ?>);">
+
+				</div>
 			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
+				
+			<?php // otherwise
 			endif;
 
 			$description = get_bloginfo( 'description', 'display' );
@@ -38,12 +58,10 @@
 				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
 			<?php
 			endif; ?>
+
 		</div><!-- .site-branding -->
 
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'flreview' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
-		</nav><!-- #site-navigation -->
+		
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">
